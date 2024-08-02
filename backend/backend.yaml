@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adas-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: adas
+  template:
+    metadata:
+      labels:
+        app: adas
+    spec:
+      containers:
+      - name: adas
+        image: yejiii/adas-backend:0.0.2
+        ports:
+        - containerPort: 8080
