@@ -2,6 +2,9 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: backend-ingress
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet
+    alb.ingress.kubernetes.io/target-type: ip
 spec:
   ingressClassName: alb
   rules:
@@ -11,6 +14,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: adas-service
+            name: backend-svc
             port:
               number: 80
