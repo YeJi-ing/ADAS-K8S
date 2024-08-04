@@ -3,8 +3,8 @@ kind: Ingress
 metadata:
   name: backend-ingress
   annotations:
-    alb.ingress.kubernetes.io/scheme: internet
-    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/scheme: internet-facing # 퍼블릭 ALB 설정
+    alb.ingress.kubernetes.io/healthcheck-path: /swagger-ui/index.html
 spec:
   ingressClassName: alb
   rules:
@@ -14,6 +14,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: backend-svc
+            name: backend-nodeport
             port:
               number: 80
